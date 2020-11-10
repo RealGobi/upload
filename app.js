@@ -10,10 +10,27 @@ const methodOverride = require('method-override');
 
 
 const app = express();
+// Middle
+
+app.use(bodyParser.json());
+
+app.use(methodOverride('_method'))
 
 // view
 
 app.set("view engine", "ejs");
+
+// Mongo URI
+
+const mongoURI = 'mongodb+srv://dbUser:dbUser@cluster0.ascei.mongodb.net/test?retryWrites=true&w=majority';
+
+// Mongo connection
+
+const connect = moongose.createConnection(mongoURI);
+
+// init gft
+
+let gfs;
 
 app.get('/', (req, res) => {
   res.render('index');
