@@ -2,10 +2,10 @@ const express = require("express");
 const path = require('path');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
-const moongose = require('mongoose');
+const mongoose = require('mongoose');
 const multer = require('multer');
-const gridFsStorage = require('multer-gridfs-storage');
-const grid = require('gridfs-stream');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 
 
@@ -26,7 +26,7 @@ const mongoURI = 'mongodb+srv://dbUser:dbUser@cluster0.ascei.mongodb.net/test?re
 
 // Mongo connection
 
-const connect = moongose.createConnection(mongoURI);
+const connect = mongoose.createConnection(mongoURI);
 
 // init gft
 
