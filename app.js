@@ -1,4 +1,13 @@
 const express = require("express");
+const path = require('path');
+const bodyParser = require('body-parser');
+const crypto = require('crypto');
+const moongose = require('mongoose');
+const multer = require('multer');
+const gridFsStorage = require('multer-gridfs-storage');
+const grid = require('gridfs-stream');
+const methodOverride = require('method-override');
+
 
 const app = express();
 
