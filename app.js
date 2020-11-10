@@ -32,6 +32,10 @@ const connect = moongose.createConnection(mongoURI);
 
 let gfs;
 
+connect.once('open', () => {
+  gfs = Grid(connect.db, mongoose.mongo)});
+  gfs.collection('upload')
+
 app.get('/', (req, res) => {
   res.render('index');
 });
