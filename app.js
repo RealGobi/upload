@@ -62,6 +62,8 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
+// GET
+
 app.get('/', (req, res) => {
   res.render('index');
 });
