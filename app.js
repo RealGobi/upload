@@ -87,6 +87,21 @@ app.get('/files', (req,res) => {
     return res.json(files);
   });
 });
+
+// GET /files/:filename
+
+app.get('/files/:filename', (req,res) => {
+  gfs.files.findOne({filename: req.params.filename}, (err, file) => {
+      // check if file
+      if(!file || file.length === 0) {
+        return res.status(404).json({
+          err: 'No file found'
+        })
+      }
+      return res.json(file);
+    })
+});
+
 const PORT = 4000;
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
