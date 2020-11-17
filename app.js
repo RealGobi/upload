@@ -66,6 +66,14 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// POST 
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  // res.json({file: req.file}) 
+  res.redirect('/'); // stay on page
+});
+
+
 // GET /files
 
 app.get('/files', (req,res) => {
