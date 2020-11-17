@@ -66,6 +66,19 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// GET /files
+
+app.get('/files', (req,res) => {
+  gfs.files.find().toArray((err, files) => {
+    // check if files
+    if(!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No file(s) in database'
+      })
+    }
+    return res.json(files);
+  });
+});
 const PORT = 4000;
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
