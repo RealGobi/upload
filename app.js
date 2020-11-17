@@ -31,13 +31,15 @@ const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false });
 
-// init gft
+// init gfs
 
 let gfs;
 
-connect.once('open', () => {
-  gfs = Grid(connect.db, mongoose.mongo)});
-  gfs.collection('upload')
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+});
 
 app.get('/', (req, res) => {
   res.render('index');
