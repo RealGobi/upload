@@ -22,7 +22,7 @@ app.set("view engine", "ejs");
 
 // Mongo URI
 
-const mongoURI = 'mongodb+srv://dbUser:dbUser@cluster0.ascei.mongodb.net/test?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://dbUser:' + process.env.db_pass + '@cluster0.ascei.mongodb.net/test?retryWrites=true&w=majority';
 
 // Mongo connection
 
