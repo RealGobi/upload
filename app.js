@@ -26,7 +26,10 @@ const mongoURI = 'mongodb+srv://dbUser:' + process.env.db_pass + '@cluster0.asce
 
 // Mongo connection
 
-const connect = mongoose.createConnection(mongoURI);
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false });
 
 // init gft
 
