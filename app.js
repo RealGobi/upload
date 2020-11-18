@@ -65,7 +65,21 @@ const upload = multer({ storage });
 // GET
 
 app.get('/', (req, res) => {
-  res.render('index');
+  gfs.files.find().toArray((err, files) => {
+    // check if files
+    if(!files || files.length === 0) {
+      res.render('index', { files: false })
+      } else {
+        files.map(file => {
+          if(file.contentType === 'images/jpeg' || file.contentType === 'images/png') {
+            file.isImage = true;
+          } else {
+            file.isImage = false;
+          }
+        });
+        res.render('index', { files: files });
+      }
+  });
 });
 
 // POST 
