@@ -141,6 +141,18 @@ app.get('/image/:filename', (req,res) => {
     })
 });
 
+// delete /file/:id
+
+app.delete('/files/:id', (res, req) => {
+  gfs.remove({_id: req.params.id, root: 'uploads'}, (err, gridStore) => {
+    if (err) {
+      return res.status(404).json({err:err});
+    } else {
+      res.redirect('/')
+    }
+  });
+});
+
 const PORT = 4000;
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
