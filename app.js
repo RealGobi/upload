@@ -65,10 +65,12 @@ const upload = multer({ storage });
 // GET
 
 app.get('/', (req, res) => {
+  console.log('here!');
   gfs.files.find().toArray((err, files) => {
     // check if files
     if(!files || files.length === 0) {
-      res.render('index', { files: false })
+      res.render('index', { files: false });
+      console.log('hello line 72');
       } else {
         files.map(file => {
           if(file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
@@ -143,15 +145,24 @@ app.get('/image/:filename', (req,res) => {
 
 // delete /file/:id
 
-app.delete('/files/:id', (res, req) => {
-  gfs.remove({_id: req.params.id, root: 'uploads'}, (err, gridStore) => {
+
+/* app.delete('/files/:id', (req, res) => {
+  console.log(req.params.id);
+  gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
     if (err) {
-      return res.status(404).json({err:err});
-    } else {
-      res.redirect('/')
+      return res.status(404).json({ err: err });
     }
+
+    res.redirect('/');
   });
-});
+});  */
+
+app.delete('/files/:id', (req, res) => {
+  gfs.remove({ _id: req.params.id }, (err) => {
+    if (err) return res.status(500).json({ success: false })
+      return res.redirect('/');
+    })
+})
 
 const PORT = 4000;
 
